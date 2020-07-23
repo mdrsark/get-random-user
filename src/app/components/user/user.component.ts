@@ -12,10 +12,10 @@ import { IUserResponse, IUserData } from '../../models/user';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  name;
-  email;
-  phone;
-  picture;
+  name : string;
+  email : string;
+  phone : number;
+  picture : string;
 
   constructor(private userService: UserService) {}
 
