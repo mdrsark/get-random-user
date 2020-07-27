@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 // Models
-import { IUserResponse, IUserData } from '../../models/user';
+import { IUserResults, IUserInfo } from '../models/user.module';
 
 @Component({
   selector: 'app-user',
@@ -14,7 +14,7 @@ import { IUserResponse, IUserData } from '../../models/user';
 export class UserComponent implements OnInit {
   name : string;
   email : string;
-  phone : number;
+  phone : string;
   picture : string;
   loading : string = 'Loading';
 
@@ -25,12 +25,12 @@ export class UserComponent implements OnInit {
   }
 
   getRandomUser() {
-    this.userService.getRandomName().subscribe((response) => {
-      const temporalName: object = response.results[0].name;      
-      this.name = `${temporalName.title} ${temporalName.first} ${temporalName.last} `;
-      this.email = response.results[0].email;
-      this.phone = response.results[0].phone;
-      this.picture = response.results[0].picture.medium;
+    this.userService.getRandomName().subscribe((response: IUserResults) => {
+      const uInfo: IUserInfo = response.results[0]; 
+      this.name = `${uInfo.name.title} ${uInfo.name.title} ${uInfo.name.last}`;
+      this.email = uInfo.email;
+      this.phone = uInfo.phone;
+      this.picture = uInfo.picture.medium;
       console.log(response);
     });
   }
